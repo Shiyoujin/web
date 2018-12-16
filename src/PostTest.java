@@ -8,10 +8,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+//—————————————————————————————这次因为最后直接传参数，所有 构造器后，仅需 get方法， set无需设置
+
 //用post发送http的网络请求,
 public class PostTest {
     //设置 不传参的sendPost 方法
-    public static String sendPost() {//传入参数Sting url  返回值对应可以匹配成void
+    public static String sendPost() {//传入参数Sting url  返回值对应可以匹配成void-----这里是返回result包含的 json字符串
 //        public static String sendPost(String url, String param)   param 里面是 "key=123&v=456"
         PrintWriter out = null;
         BufferedReader in = null;
@@ -43,7 +45,7 @@ public class PostTest {
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));   //一定要有 URF-8，
-                                                                                           // 还有下面数据库的链接也要注意
+            // 还有下面数据库的链接也要注意
             // 发送请求参数
 //            out.print(param);
             //对数据进行访问
@@ -117,150 +119,152 @@ class JDBCOperation {
             return Csrq;
         }
 
-        public void setCsrq(String csrq) {
-            Csrq = csrq;
-        }
-
         public String getXz() {
             return Xz;
-        }
-
-        public void setXz(String xz) {
-            Xz = xz;
         }
 
         public String getXmEn() {
             return XmEn;
         }
 
-        public void setXmEn(String xmEn) {
-            XmEn = xmEn;
-        }
-
         public String getBj() {
             return Bj;
-        }
-
-        public void setBj(String bj) {
-            Bj = bj;
         }
 
         public String getZyh() {
             return Zyh;
         }
 
-        public void setZyh(String zyh) {
-            Zyh = zyh;
-        }
-
         public String getYxh() {
             return Yxh;
-        }
-
-        public void setYxh(String yxh) {
-            Yxh = yxh;
         }
 
         public String getXb() {
             return Xb;
         }
 
-        public void setXb(String xb) {
-            Xb = xb;
-        }
-
         public String getMz() {
             return Mz;
-        }
-
-        public void setMz(String mz) {
-            Mz = mz;
         }
 
         public String getZym() {
             return Zym;
         }
 
-        public void setZym(String zym) {
-            Zym = zym;
-        }
-
         public String getYxm() {
             return Yxm;
         }
-
-        public void setYxm(String yxm) {
-            Yxm = yxm;
-        }
-
         public String getXh() {
             return Xh;
-        }
-
-        public void setXh(String xh) {
-            Xh = xh;
         }
 
         public String getRxrq() {
             return Rxrq;
         }
 
-        public void setRxrq(String rxrq) {
-            Rxrq = rxrq;
-        }
-
         public String getXjzt() {
             return Xjzt;
-        }
-
-        public void setXjzt(String xjzt) {
-            Xjzt = xjzt;
         }
 
         public String getXm() {
             return Xm;
         }
 
-        public void setXm(String xm) {
-            Xm = xm;
-        }
-
         public String getYxmen() {
             return Yxmen;
-        }
-
-        public void setYxmen(String yxmen) {
-            Yxmen = yxmen;
         }
 
         public String getZymEn() {
             return ZymEn;
         }
 
-        public void setZymEn(String zymEn) {
-            ZymEn = zymEn;
-        }
-
         public String getNj() {
             return Nj;
         }
 
-        public void setNj(String nj) {
-            Nj = nj;
-        }
+
+//        public void setCsrq(String csrq) {
+//            Csrq = csrq;
+//        }
+//
+//        public void setXz(String xz) {
+//            Xz = xz;
+//        }
+//
+//        public void setXmEn(String xmEn) {
+//            XmEn = xmEn;
+//        }
+//
+//        public void setBj(String bj) {
+//            Bj = bj;
+//        }
+//
+//        public void setZyh(String zyh) {
+//            Zyh = zyh;
+//        }
+//
+//
+//        public void setYxh(String yxh) {
+//            Yxh = yxh;
+//        }
+//
+//        public void setXb(String xb) {
+//            Xb = xb;
+//        }
+//
+//        public void setMz(String mz) {
+//            Mz = mz;
+//        }
+//
+//
+//        public void setZym(String zym) {
+//            Zym = zym;
+//        }
+//
+//
+//        public void setYxm(String yxm) {
+//            Yxm = yxm;
+//        }
+//
+//        public void setXh(String xh) {
+//            Xh = xh;
+//        }
+//
+//        public void setRxrq(String rxrq) {
+//            Rxrq = rxrq;
+//        }
+//
+//        public void setXjzt(String xjzt) {
+//            Xjzt = xjzt;
+//        }
+//
+//        public void setXm(String xm) {
+//            Xm = xm;
+//        }
+//
+//        public void setYxmen(String yxmen) {
+//            Yxmen = yxmen;
+//        }
+//
+//        public void setZymEn(String zymEn) {
+//            ZymEn = zymEn;
+//        }
+//
+//        public void setNj(String nj) {
+//            Nj = nj;
+//        }
     }
 
     //创建数据库的链接
     private static Connection getConn() {
-
-        Connection conn = null;
+        Connection conn = null;               //这里的 conn与 Post中的 conn应该是不同的
         try {
             //加载 JDBC 的驱动
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName); //classLoader,加载对应驱动
+            Class.forName("com.mysql.cj.jdbc.Driver");// String driverName = "com.mysql.cj.jdbc.Driver";    也可以这么分开写
+                                                         //Class.forName(driverName); //classLoader,加载对应驱动
 
-            //创建数据库的链接, student 为库名，其后为数据库设置了  UTF-8和 时区，不然 中文会乱码
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8", "root", "");
+            //对外提供一个链接数据库的方法, student 为数据库名，其后为数据库设置了  UTF-8和 时区，不然 中文会乱码
+             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8", "root", "");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -270,13 +274,13 @@ class JDBCOperation {
     }
 
     //设置 prepareStatement对象 insert
-    public static int insert(JDBCOperation.Studenta studenta) {
-        Connection conn = getConn();
+    public static int insert(JDBCOperation.Studenta studenta) {   // insert 是方法不是构造器，这里不是 传入参数，创建了一个 Studenta类的 对象 studenta来使用其中的 东东
+        Connection conn = getConn(); //创建链接
         int i = 0;
         String sql = "insert into class (Csrq,Xz,XmEn,Bj,Zyh,Yxh,Xb,Mz,Zym,Yxm,Xh,Rxrq,Xjzt,Xm,Yxmen,ZymEn,Nj)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement pstmt;
+//        PreparedStatement pstmt;
         try {
-            pstmt = conn.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql);    //创建预处理对象
             pstmt.setString(1,studenta.getCsrq());
             pstmt.setString(2,studenta.getXz());
             pstmt.setString(3,studenta.getXmEn());
@@ -294,7 +298,7 @@ class JDBCOperation {
             pstmt.setString(15,studenta.getYxmen());
             pstmt.setString(16,studenta.getZymEn());
             pstmt.setString(17,studenta.getNj());
-            i = pstmt.executeUpdate();
+            i = pstmt.executeUpdate();  //保存
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
